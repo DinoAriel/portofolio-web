@@ -18,10 +18,22 @@ function SkillBadge({ name }: { name: string }) {
 // Reusable Bento Stat Card
 function BentoCard({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="p-5 rounded-2xl bg-zinc-50 border border-zinc-200/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 }
+      }}
+      whileHover={{ 
+        y: -5,
+        scale: 1.03,
+        boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)"
+      }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      className="p-5 rounded-2xl bg-zinc-50 border border-zinc-200/60 shadow-sm transition-all duration-300 cursor-default"
+    >
       <p className="text-2xl font-black text-indigo-600 mb-1">{title}</p>
       <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">{desc}</p>
-    </div>
+    </motion.div>
   );
 }
 
@@ -55,7 +67,7 @@ export default function Skills() {
       `}</style>
 
       {/* 1. Curved White Container ("ABOUT ME") */}
-      <section id="about" className="relative min-h-screen flex items-center bg-black overflow-hidden py-32 pb-40">
+      <section id="skills" className="relative min-h-screen flex items-center bg-black overflow-hidden py-32 pb-40">
         
         {/* Background Oval Curve (White) */}
         <div
@@ -129,16 +141,39 @@ export default function Skills() {
 
             {/* Right: Biography Text & Bento Stats */}
             <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.8,
+                    staggerChildren: 0.15,
+                    delayChildren: 0.1
+                  }
+                }
+              }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
               className="text-zinc-800"
             >
-              <h2 className="text-4xl md:text-6xl font-black text-zinc-950 mb-8 tracking-tight">
+              <motion.h2 
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                className="text-4xl md:text-6xl font-black text-zinc-950 mb-8 tracking-tight"
+              >
                 Get to know me.
-              </h2>
-              <div className="space-y-6 text-base md:text-lg leading-relaxed text-zinc-600 mb-10">
+              </motion.h2>
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                className="space-y-6 text-base md:text-lg leading-relaxed text-zinc-600 mb-10"
+              >
                 <p>
                   Saya adalah mahasiswa semester 4 <span className="font-bold text-zinc-900 bg-zinc-100 px-1.5 py-0.5 rounded">Diploma 3 Teknik Informatika</span> di Politeknik Elektronika Negeri Surabaya (PENS) dengan IPK 3.60/4.0.
                 </p>
@@ -148,14 +183,25 @@ export default function Skills() {
                 <p>
                   Saya menguasai keahlian teknis dalam <span className="italic text-zinc-800 font-medium">Web & Mobile Programming</span> untuk memastikan seluruh proyek dapat diselesaikan secara efisien dan tepat waktu.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Bento Stats Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.1
+                    }
+                  }
+                }}
+                className="grid grid-cols-2 md:grid-cols-3 gap-4"
+              >
                 <BentoCard title="3.60 / 4.0" desc="IPK Pendidikan" />
                 <BentoCard title="Software" desc="Fokus Utama" />
                 <BentoCard title="Agile PO" desc="Metodologi" />
-              </div>
+              </motion.div>
             </motion.div>
 
           </div>

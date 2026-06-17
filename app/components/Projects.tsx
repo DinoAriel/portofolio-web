@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 
 // Reusable Project Card using STAR Method
 interface ProjectProps {
@@ -31,7 +32,14 @@ function ProjectCard({
   demoLink,
 }: ProjectProps) {
   return (
-    <div className="rounded-2xl p-6 md:p-8 bg-zinc-950/40 border border-zinc-800/80 hover:border-zinc-700/80 backdrop-blur-sm transition-all duration-300 group shadow-xl shadow-black/25 flex flex-col gap-6 relative overflow-hidden">
+    <motion.div 
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      whileHover={{ y: -6, scale: 1.01 }}
+      className="rounded-2xl p-6 md:p-8 bg-zinc-950/40 border border-zinc-800/80 hover:border-zinc-700/80 backdrop-blur-sm transition-all duration-300 group shadow-xl shadow-black/25 flex flex-col gap-6 relative overflow-hidden"
+    >
       {/* Dynamic Backing Ambient Light */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-500 pointer-events-none" />
 
@@ -129,26 +137,30 @@ function ProjectCard({
 
       {/* Buttons */}
       <div className="flex gap-3 pt-6 border-t border-zinc-900 mt-auto">
-        <a
+        <motion.a
           href={codeLink}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-800 hover:border-zinc-600 rounded-lg text-xs font-semibold text-zinc-300 hover:text-white transition-colors cursor-pointer"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z" clipRule="evenodd" />
           </svg>
           View Code
-        </a>
-        <a
+        </motion.a>
+        <motion.a
           href={demoLink}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-800 hover:border-zinc-600 rounded-lg text-xs font-semibold text-zinc-300 hover:text-white transition-colors cursor-pointer"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
           Live Demo
-        </a>
+        </motion.a>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -215,14 +227,20 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
+        >
           <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tighter uppercase">
             Projects
           </h2>
           <p className="text-sm sm:text-base text-zinc-500 max-w-xl mx-auto font-light tracking-widest uppercase">
             Studi kasus proyek dengan metode STAR (Situation, Task, Action, Result)
           </p>
-        </div>
+        </motion.div>
 
         {/* Project Cards Stack */}
         <div className="grid gap-10">

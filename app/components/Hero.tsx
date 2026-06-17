@@ -37,15 +37,32 @@ export default function Hero() {
 
       <motion.div 
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-indigo-500/15 rounded-full blur-[120px] pointer-events-none" 
+        animate={{ 
+          opacity: [0.1, 0.18, 0.1],
+          x: ["-50%", "-45%", "-55%", "-50%"],
+          y: ["-50%", "-55%", "-45%", "-50%"]
+        }}
+        transition={{ 
+          duration: 15, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+        className="absolute top-1/2 left-1/2 w-[800px] h-[400px] bg-indigo-500/15 rounded-full blur-[120px] pointer-events-none" 
       />
       <motion.div 
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2, delay: 0.5 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[500px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none" 
+        animate={{ 
+          opacity: [0.05, 0.12, 0.05],
+          x: ["-50%", "-55%", "-45%", "-50%"],
+          y: ["-50%", "-45%", "-55%", "-50%"]
+        }}
+        transition={{ 
+          duration: 20, 
+          repeat: Infinity, 
+          ease: "easeInOut",
+          delay: 0.5
+        }}
+        className="absolute top-1/2 left-1/2 w-[300px] h-[500px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none" 
       />
 
       {/* Kontainer Utama */}
@@ -81,12 +98,22 @@ export default function Hero() {
 
         {/* Buttons */}
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-          <a href="#projects" className="w-full sm:w-auto px-8 py-3.5 bg-white text-black rounded-full text-sm font-semibold tracking-wide hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] text-center">
+          <motion.a 
+            href="#projects" 
+            whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255, 255, 255, 0.25)" }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full sm:w-auto px-8 py-3.5 bg-white text-black rounded-full text-sm font-semibold tracking-wide text-center transition-shadow duration-300"
+          >
             Explore Work
-          </a>
-          <a href="#contact" className="w-full sm:w-auto px-8 py-3.5 bg-transparent border border-white/20 text-white rounded-full text-sm font-semibold tracking-wide hover:bg-white/10 transition-colors duration-300 text-center">
+          </motion.a>
+          <motion.a 
+            href="#contact" 
+            whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full sm:w-auto px-8 py-3.5 bg-transparent border border-white/20 text-white rounded-full text-sm font-semibold tracking-wide text-center transition-colors duration-300"
+          >
             Get in Touch
-          </a>
+          </motion.a>
         </motion.div>
 
       </motion.div>

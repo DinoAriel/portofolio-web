@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -34,7 +35,13 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left panel: Info & Socials */}
-          <div className="lg:col-span-5 flex flex-col justify-between h-full">
+          <motion.div 
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-5 flex flex-col justify-between h-full"
+          >
             <div>
               <h2 className="text-indigo-400 text-xs font-bold tracking-widest uppercase mb-3">
                 Hubungi Saya
@@ -125,10 +132,16 @@ export default function Contact() {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right panel: Modern interactive form */}
-          <div className="lg:col-span-7 bg-zinc-900/20 border border-zinc-800/80 rounded-2xl p-8 relative">
+          <motion.div 
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-7 bg-zinc-900/20 border border-zinc-800/80 rounded-2xl p-8 relative"
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
@@ -178,9 +191,11 @@ export default function Contact() {
                 />
               </div>
 
-              <button
+              <motion.button
                 type="submit"
                 disabled={sending || sent}
+                whileHover={!sending && !sent ? { scale: 1.02, boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.4)" } : {}}
+                whileTap={!sending && !sent ? { scale: 0.98 } : {}}
                 className={`w-full py-3.5 rounded-lg text-sm font-semibold flex items-center justify-center transition-all duration-200 cursor-pointer ${
                   sent
                     ? 'bg-emerald-600 text-white'
@@ -200,9 +215,9 @@ export default function Contact() {
                 ) : (
                   'Kirim Pesan'
                 )}
-              </button>
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

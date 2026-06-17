@@ -21,7 +21,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Beranda', href: '#home' },
-    { name: 'Keahlian', href: '#skills' },
+    { name: 'Tentang', href: '#skills' },
     { name: 'Proyek', href: '#projects' },
     { name: 'Pengalaman', href: '#experience' },
     { name: 'Hubungi', href: '#contact' },
